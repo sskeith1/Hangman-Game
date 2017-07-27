@@ -16,7 +16,7 @@
 	newLetter;
 	};
 
-	console.log()
+	console.log(options)
 
 //Main
 	document.onkeyup = function(event) {
@@ -31,21 +31,23 @@
 
 		console.log(guessesMade);
 		
+		
 
-		if(userGuess === newLetter) {
+
+		if (userGuess === newLetter) {
 			wins++;
 			document.querySelector('#wins').innerHTML = "Wins: " + wins;
 			console.log(wins);
 			reset();
-		} 
-		else if (guesses === 0){
+		} else 
+
+		if (guesses === 0){
 			losses++;
 			document.querySelector('#losses').innerHTML = "Losses: " + losses;
 			console.log(losses);
+			alert("Try again!");
 			reset();
 		}
 
-		if(userGuess!==options) {
-			
-		}
+
 	};
