@@ -1,62 +1,51 @@
 //Componenets
 	var wins = 0;
 	var losses = 0;
-
-	var guessesCount = 10;
+	var guesses = 10;
 	var guessesMade = [];
 
-	var guessesTotal = 10;
-	var guess = null;
+	var options = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l',
+	 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
 
+//Variables
+	var newLetter = options[Math.floor(Math.random() * options.length)];
 
-// User Guesses
-	var changeGuessesMade = function() {
-	document.querySelector('#let').innerHTML = "Your Guesses so far: " + guessesMade.join(', ');
-	};
-
-
-//Change guessesTotal
-	var changeGuessesTotal = function() {
-		document.querySelector('#guessesTotal').innerHTML = "Guesses left: " + guessesTotal;
-	};
-
-
-//Choice Options (Computer)
-	var options = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
-	var computerGuess = options[Math.floor(Math.random() * options.length)];
-
-
-//Change Guess
-	var changeGuess = function() {
-		this.guess = this.options[Math.floor(Math.random() * this.options.length)];
-	};
-
-
-// Reset
 	var reset = function() {
-	guessesCount = 10;
-	guessesTotal = 10;
+	guesses = 10;
 	guessesMade = [];
+	newLetter;
+	};
 
-	
-//User Guesses
-document.onkeyup = function(event) {
-    guessesCount--;
-  var userGuess = String.fromCharCode(event.keyCode).toLowerCase();
+	console.log()
+
+//Main
+	document.onkeyup = function(event) {
+		var userGuess = String.fromCharCode(event.keyCode).toLowerCase(); 
+		guesses--;
+
+		document.querySelector('#guesses').innerHTML = "Guesses Left: " + guesses;
+
+		guessesMade.push(userGuess);
+		document.querySelector('#guessesMade').innerHTML = "Your Guesses so far: " + guessesMade;
 
 
-//Outcomes (Win vs. Loss)
-		if (guessesCount > 0){
-			if (userGuess == guess){
-		    	wins++;
-		    	document.querySelector('#wins').innerHTML = "Wins: " + wins;
-		    	alert("Alright Professor X!");
-		    	reset();
-			}
-		}else if(guessesCount == 0){
+		console.log(guessesMade);
+		
+
+		if(userGuess === newLetter) {
+			wins++;
+			document.querySelector('#wins').innerHTML = "Wins: " + wins;
+			console.log(wins);
+			reset();
+		} 
+		else if (guesses === 0){
 			losses++;
 			document.querySelector('#losses').innerHTML = "Losses: " + losses;
-			alert("Not quite, normie! Try again!");
+			console.log(losses);
 			reset();
 		}
-};
+
+		if(userGuess!==options) {
+			
+		}
+	};
